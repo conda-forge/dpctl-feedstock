@@ -1,6 +1,6 @@
 {% set required_compiler_version = "2024.2.0" %}
 
-{% set version = "0.20.2" %}
+{% set version = "0.22.0" %}
 {% set buildnumber = "0" %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/IntelPython/dpctl/archive/refs/tags/{{ version }}.tar.gz
-  sha256: ad14bb214e341d9315245012e39d2aec6ca8217f99114790134664420d0eae4f
+  sha256: cc8e330da08ccc797456f1625b0a2bd6254207ec1ffb78e966ba987ffa85df0f
 
 build:
   number: {{ buildnumber }}
@@ -17,7 +17,7 @@ build:
     - level-zero
   missing_dso_whitelist:
     - $RPATH/DPCTLSyclInterface.dll  # [win]
-  skip: True  # [osx or py<39 or py>313]
+  skip: true  # [osx or py<39 or py>313]
 
 requirements:
   # TODO: keep in sync with /pyproject.toml
