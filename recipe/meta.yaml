@@ -1,6 +1,6 @@
 {% set required_compiler_version = "2024.2.0" %}
 
-{% set version = "0.21.1" %}
+{% set version = "0.22.0" %}
 {% set buildnumber = "0" %}
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/IntelPython/dpctl/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 8058fd63ed29003d3da55029827b8942911ccb03db98d37171ca21f3f3b8dd3e
+  sha256: cc8e330da08ccc797456f1625b0a2bd6254207ec1ffb78e966ba987ffa85df0f
 
 build:
   number: {{ buildnumber }}
