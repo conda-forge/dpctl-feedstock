@@ -1,7 +1,7 @@
 {% set required_compiler_version = "2024.2.0" %}
 
 {% set version = "0.21.1" %}
-{% set buildnumber = "0" %}
+{% set buildnumber = "1" %}
 
 package:
   name: dpctl
@@ -54,7 +54,10 @@ requirements:
     - numpy
 
 test:
+  requires:
+    - pip
   commands:
+    - pip check
     - python -c "import dpctl; print(dpctl.__version__)"
     - python -m dpctl -f
 
