@@ -1,7 +1,7 @@
 {% set required_compiler_version = "2024.2.0" %}
 
 {% set version = "0.22.1" %}
-{% set buildnumber = "0" %}
+{% set buildnumber = "1" %}
 
 package:
   name: dpctl
@@ -17,7 +17,7 @@ build:
     - level-zero
   missing_dso_whitelist:
     - $RPATH/DPCTLSyclInterface.dll  # [win]
-  skip: true  # [osx or py<39 or py>313]
+  skip: true  # [osx or py<39]
 
 requirements:
   # TODO: keep in sync with /pyproject.toml
