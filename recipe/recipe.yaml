@@ -1,0 +1,89 @@
+schema_version: 1
+
+context:
+  required_compiler_version: "2024.2.0"
+  version: "0.22.1"
+  buildnumber: 2
+
+package:
+  name: dpctl
+  version: ${{ version }}
+
+source:
+  url: https://github.com/IntelPython/dpctl/archive/refs/tags/${{ version }}.tar.gz
+  sha256: ea20df47875048d3f5a149a53e73def7cf5a0e96cd931372451cb8932d5108a0
+
+build:
+  number: ${{ buildnumber }}
+  skip: osx or match(python, "<3.9")
+  dynamic_linking:
+    missing_dso_allowlist:
+      - if: win
+        then: $RPATH/DPCTLSyclInterface.dll
+
+requirements:
+  # TODO: keep in sync with /pyproject.toml
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('dpcpp') }} >=${{ required_compiler_version }}
+    - if: linux
+      then: ninja >=1.11.1
+    - cmake >=3.29.0
+  host:
+    - python
+    - pip >=24.0
+    - level-zero-devel >=1.16
+    - pybind11 >=2.12
+    - intel-sycl-rt
+    - intel-cmplr-lib-rt
+    # Ensure we are using latest version of setuptools, since we don't need
+    # editable environments for release.
+    - setuptools >=69
+    - wheel >=0.43
+    - python-build >=1.1
+    - scikit-build >=0.17.0
+    - if: match(python, ">=3.13")
+      then: cython >=3.0.10,<3.1.0
+    - if: match(python, "<3.13")
+      then: cython >=3.0.10
+    - numpy
+    # WARNING: check with doc how to upgrade
+    - versioneer ==0.29
+    # versioneer dependency
+    - if: match(python, "<3.11")
+      then: tomli
+  run:
+    - python
+    - ${{ pin_compatible('intel-sycl-rt', lower_bound='x.x', upper_bound='x') }}
+    - ${{ pin_compatible('intel-cmplr-lib-rt', lower_bound='x.x', upper_bound='x') }}
+    - numpy
+  ignore_run_exports:
+    by_name:
+      - level-zero
+
+tests:
+  - requirements:
+      run:
+        - pip
+    script:
+      - pip check
+      - python -c "import dpctl; print(dpctl.__version__)"
+      - python -m dpctl -f
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: A lightweight Python wrapper for a subset of SYCL API.
+  description: |
+    Data Parallel Control or dpctl is a Python library that allows users to control the execution placement of a compute kernel on an XPU.
+
+
+  homepage: https://github.com/IntelPython/dpctl.git
+
+extra:
+  recipe-maintainers:
+    - jharlow-intel
+    - ndgrigorian
+    - antonwolfy
+    - vlad-perevezentsev
