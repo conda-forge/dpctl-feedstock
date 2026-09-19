@@ -191,6 +191,7 @@ Feedstock Maintainers
 =====================
 
 * [@antonwolfy](https://github.com/antonwolfy/)
+* [@ekomarova](https://github.com/ekomarova/)
 * [@jharlow-intel](https://github.com/jharlow-intel/)
 * [@ndgrigorian](https://github.com/ndgrigorian/)
 * [@vlad-perevezentsev](https://github.com/vlad-perevezentsev/)
