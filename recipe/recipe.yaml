@@ -1,9 +1,9 @@
 schema_version: 1
 
 context:
-  required_compiler_version: "2024.2.0"
+  required_compiler_version: "2026.0.0"
   version: "0.23.0"
-  buildnumber: 2
+  buildnumber: 0
 
 package:
   name: dpctl
@@ -34,7 +34,7 @@ requirements:
     - python
     - pip >=24.0
     - level-zero-devel >=1.16
-    - pybind11 >=2.12
+    - pybind11 >=2.13
     - intel-sycl-rt
     - intel-cmplr-lib-rt
     # Ensure we are using latest version of setuptools, since we don't need
@@ -43,10 +43,7 @@ requirements:
     - wheel >=0.43
     - python-build >=1.1
     - scikit-build >=0.17.0
-    - if: match(python, ">=3.13")
-      then: cython >=3.0.10,<3.1.0
-    - if: match(python, "<3.13")
-      then: cython >=3.0.10
+    - cython >=3.1.0
     - numpy
     # WARNING: check with doc how to upgrade
     - versioneer ==0.29
