@@ -15,7 +15,7 @@ source:
 
 build:
   number: ${{ buildnumber }}
-  skip: osx or match(python, "<3.9")
+  skip: osx or match(python, "<3.10")
   dynamic_linking:
     missing_dso_allowlist:
       - if: win
@@ -54,7 +54,7 @@ requirements:
     - python
     - ${{ pin_compatible('intel-sycl-rt', lower_bound='x.x', upper_bound='x') }}
     - ${{ pin_compatible('intel-cmplr-lib-rt', lower_bound='x.x', upper_bound='x') }}
-    - numpy
+    - numpy >=2.0
   ignore_run_exports:
     by_name:
       - level-zero
