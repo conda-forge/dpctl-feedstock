@@ -47,9 +47,6 @@ requirements:
     - numpy
     # WARNING: check with doc how to upgrade
     - versioneer ==0.29
-    # versioneer dependency
-    - if: match(python, "<3.11")
-      then: tomli
   run:
     - python
     - ${{ pin_compatible('intel-sycl-rt', lower_bound='x.x', upper_bound='x') }}
